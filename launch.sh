@@ -6,3 +6,4 @@ docker run --rm -it --network=host \
     -v "./opencode_config/.gitignore:/home/developer/.config/opencode/.gitignore" \
     -v "./opencode_share/auth.json:/home/developer/.local/share/opencode/auth.json" \
     opencode:test 
+

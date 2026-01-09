@@ -28,6 +28,7 @@ RUN apt-get update && \
     sudo \
     wget \
     unzip \
+    zstd \
     zsh \
     axel \
     git-lfs \
@@ -98,6 +99,12 @@ COPY zshrc /home/developer/.zshrc
 RUN curl -fsSL https://bun.sh/install | bash 
 RUN /home/developer/.bun/bin/bun install -g opencode-ai
 RUN mkdir -p /home/developer/.local/share/opencode && mkdir -p /home/developer/.config/opencode
+
+# Add Tool
+COPY 3rdparty/mat_preview /home/developer/tmp/mat_preview
+RUN uv tool install /home/developer/tmp/mat_preview \
+    && rm -rf /home/developer/tmp/mat_preview \
+    && uv tool install "markitdown[all]"
 
 # Default command
 CMD ["/bin/zsh"]
