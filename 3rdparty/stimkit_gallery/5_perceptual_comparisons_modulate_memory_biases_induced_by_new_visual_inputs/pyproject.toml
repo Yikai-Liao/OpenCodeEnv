@@ -1,0 +1,12 @@
+[project]
+name = "perceptual-comparisons-modulate-memory-biases"
+version = "0.1.0"
+description = "Stimuli reproduction for perceptual comparisons modulate memory biases study"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "stimkit",
+]
+
+[tool.uv.sources]
+stimkit = { path = "../../", editable = true }

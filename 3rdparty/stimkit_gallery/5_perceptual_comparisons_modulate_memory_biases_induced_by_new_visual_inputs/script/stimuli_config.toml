@@ -1,0 +1,73 @@
+# ==============================================================================
+# Canvas Configuration
+# ==============================================================================
+[canvas]
+bg_color = "white"
+screen_distance = 60.0
+screen_size = 24.0
+screen_resolution = [1920, 1080]
+
+# ==============================================================================
+# Render Configuration
+# ==============================================================================
+[render]
+# Legacy limits (unused when [render.limits] is provided)
+max_trials = 0
+max_files_per_exp = 0
+phases = ["Memory", "Probe", "Wheel1", "Prompt", "Wheel2"]
+seed = 42
+output_format = "svg"
+
+[render.limits]
+max_files_per_exp = 2        # 0 = unlimited
+max_trials_per_file = 4      # 0 = unlimited
+
+[render.limits.by_task]
+compare = 4
+ignore = 3
+remember = 4
+
+# ==============================================================================
+# Multiprocessing Configuration
+# ==============================================================================
+[multiprocessing]
+# Number of processes to use for parallel rendering
+# Set to 0 or omit to use all available CPU cores
+# processes = 4  # Uncomment and set a number to limit processes
+# processes = 0  # Uncomment to use all available CPU cores
+# Enable/disable multiprocessing
+enabled = false
+
+# ==============================================================================
+# Color Space (CIE L*a*b*)
+# ==============================================================================
+[color_space]
+count = 360
+l_star = 70.0
+a_center = 20.0
+b_center = 38.0
+radius = 60.0
+item_diameter_px = 200
+wheel_diameter_px = 800
+wheel_ring_width_px = 80
+
+# ==============================================================================
+# Shape Space (Li et al., 2020; approximated generator)
+# ==============================================================================
+[shape_space]
+count = 360
+item_size_px = 200
+wheel_diameter_px = 800
+wheel_item_size_px = 120
+exemplar_count = 18
+fill_color = "none"
+stroke_color = "black"
+stroke_width = 2.0
+fill_enabled = false
+
+# ==============================================================================
+# Prompt Settings
+# ==============================================================================
+[prompt]
+font_size = 48
+color = "black"

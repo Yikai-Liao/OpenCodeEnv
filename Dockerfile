@@ -13,6 +13,10 @@ ENV LANG=en_US.UTF-8 \
 # (Moved this up from the bottom to fix the "file not found" error)
 COPY download/ /tmp/download/
 
+RUN echo  "deb http://mirrors.aliyun.com/debian bullseye main" >/etc/apt/sources.list \
+    && echo  "deb http://mirrors.aliyun.com/debian-security bullseye-security main" >>/etc/apt/sources.list \
+    && echo  "deb http://mirrors.aliyun.com/debian bullseye-updates main" >>/etc/apt/sources.list 
+
 # 2. System update, Tools, Node.js, and Bun installation
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -105,6 +109,10 @@ COPY 3rdparty/mat_preview /home/developer/tmp/mat_preview
 RUN uv tool install /home/developer/tmp/mat_preview \
     && rm -rf /home/developer/tmp/mat_preview \
     && uv tool install "markitdown[all]"
+
+# Add Gallery
+COPY 3rdparty/stimkit_gallery /stimkit_gallery
+RUN chown -R developer:developer /stimkit_gallery
 
 # Default command
 CMD ["/bin/zsh"]

@@ -1,0 +1,15 @@
+[project]
+name = "boolean-map-units-6"
+version = "0.1.0"
+description = "Stimuli reproduction for Boolean map manipulation experiments."
+readme = "exp_design.md"
+requires-python = ">=3.12"
+dependencies = [
+    "loguru>=0.7.3",
+    "pydantic>=2.12.5",
+    "stimkit",
+    "tqdm>=4.67.1",
+]
+
+[tool.uv.sources]
+stimkit = { path = "../../", editable = true }

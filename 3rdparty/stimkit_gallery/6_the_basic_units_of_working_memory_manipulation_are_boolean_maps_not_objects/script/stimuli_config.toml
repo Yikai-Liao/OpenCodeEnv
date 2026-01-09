@@ -1,0 +1,54 @@
+[canvas]
+screen_distance = 57
+screen_size = 27
+screen_resolution = [1920, 1080]
+bg_color = "white"
+
+[render]
+seed = 20241221
+output_format = "svg"
+max_trials = 1
+phases = ["Memory", "Cue", "Mask", "Test"]
+
+[display]
+# Cue palette described in the paper (RGB converted to hex).
+palette = ["red", "green", "blue", "#fa96c8", "yellow", "cyan", "#006464"]
+bar_colors = ["red", "green", "blue"]
+bar_orientations = [45, -45]
+
+[exp1]
+dumbbell_radius = 1.0
+connector_length = 5.0
+connector_width = 0.1
+object_radius = 2.83
+cue_radius = 1.0
+cue_line_width = 0.1
+mask_spacing = 2.5
+mask_radius = 1.0
+
+[exp2]
+circle_radius = 0.8
+grid_spacing = 2.5
+cue_radius = 0.9
+cue_line_width = 0.1
+grid_line_width = 0.1
+grid_color = "black"
+
+[exp3]
+bar_length = 1.6
+bar_width = 0.1
+grid_spacing = 2.5
+cue_radius = 0.9
+cue_line_width = 0.1
+grid_line_width = 0.1
+grid_color = "black"
+
+[exp4]
+bar_length = 1.6
+bar_width = 0.2
+grid_spacing = 2.5
+grid_line_width = 0.1
+grid_size = 10.0
+cue_radius = 0.8
+bg_color = "gray"
+grid_color = "black"

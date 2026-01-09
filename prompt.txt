@@ -1,0 +1,43 @@
+接下来，你需要利用skill，多Agent能力，来尝试复现给定论文的原始刺激，每个阶段使用一个Agent独立运行。具体要求如下：
+
+## 1. 可复现性检查
+
+创建一个独立Agent阻塞运行，使用技能stimuli-reproducibility-check，检查当前论文的刺激复现性。
+
+## 2. 实验设计处理
+
+创建一个独立Agent阻塞运行，使用技能stimuli-exp-design来处理 当前论文 。使用zai 的mcp 中的图像分析工具来读取实验插图，禁止使用READ工具读取任何图片文件/非纯文本文件。注意：
+1. 请严肃对待，严格遵守skill要求，并查看skill提供的reference内容
+2. 优先查看论文，然后仅读取需要查看的图片，因为有不相关图片
+3. 最后务必遵守data preview技能查看data下的数据，生成的preview文件，请只读取前20行作为预览使用，禁止读取完整文件，如果READ工具不支持，请使用head 命令在命令行读取
+4. 我已经在该路径下创建了uv 环境，并uv add stimkit作为后续的依赖（内涵了pandas,polars等依赖）。当你需要实际分析数据时，禁止大规模读取超大的完整preview文件或者将记忆中的数据编码到文件中进行分析。你应该在script下写一个python脚本，使用脚本加载原始数据进行直接分析，使用uv 运行
+
+## 3. 实验设计Review
+
+创建一个独立Agent阻塞运行，加载stimuli-exp-design 技能和reference下的内容，不是创建exp-design文档，而是对exp_design.md进行review，尤其是对原始论文的引用是否准确，是否有编造。
+
+**如果有问题，提供修改建议和理由，并返回步骤2, 修改exp-design文档。否则，继续下一步。**
+
+## 刺激复现代码实现
+
+创建一个独立Agent阻塞运行，加载 stimuli-code-generation 技能，并在需要时加载reference下的md文件。
+
+开始编写刺激复现脚本。我已经创建了uv环境并已经添加了uv add stimkit依赖，这个库存在于pypi, <workspace>/3rdparty 下为只读文件，是方便你参考阅读的stimkit源代码
+
+一些示例工程被放在了 绝对路径 `/gallery`下 你可以优先参考gallery中编号1的工程，但是那个工程仍有缺点，以SKILL中的要求和说明为更高优先级的根本要求 
+**禁止将pyproject.toml中的stimkit指向3rdparty路径**
+
+当你需要读取任何data路径下的preview文件时，请限制读取的行数不超过30行。如果需要进一步分析，请在script下写python脚本，在uv环境中添加需要的依赖然后运行。
+
+**注意将最终输出的图像格式设置为jpg方便后续查看与Review"
+
+## 刺激复现代码Review
+
+创建一个独立Agent阻塞运行，使用技能stimuli-code-review，加载reference下的内容，对刺激复现代码进行review，确保代码符合要求。如果有问题，提供修改建议和理由，新建或者完善 code_review.md 文件，并返回步骤4，修改代码。否则，继续下一步。
+
+注意，你可以使用"multimodal-looker" 这个具有图像理解能力的sub-agent 来对具体的某些图像进行理解和分析，可以并行创建多个这样的sub-agent 来分别处理不同的图像，并阻塞等待分析完成，禁止取消这些图像分析的sub-agent。
+
+## 结果报告
+
+将你在实现过程中遇到的困那，review遇到并解决了的问题，整理为一个结果报告，写到 result_report.md 文件中，完成后结束运行。
+

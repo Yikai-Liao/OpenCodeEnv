@@ -1,0 +1,18 @@
+[project]
+name = "linear-impact-vwm-awareness"
+version = "0.1.0"
+description = "Reproduction of stimuli for 'The linear impact of visual working memory load on visual awareness'"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "stimkit",
+    "scipy",
+    "numpy",
+    "loguru",
+    "pydantic",
+    "tqdm",
+    "matplotlib",
+]
+
+[tool.uv.sources]
+stimkit = { path = "../../", editable = true }

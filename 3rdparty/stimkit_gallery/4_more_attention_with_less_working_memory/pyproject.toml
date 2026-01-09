@@ -1,0 +1,20 @@
+[project]
+name = "4-more-attention-with-less-working-memory"
+version = "0.1.0"
+description = "Reproduction of 'More attention with less working memory'"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "stimkit",
+    "openpyxl",
+    "pydantic>=2.12.5",
+    "polars>=1.36.1",
+    "loguru>=0.7.3",
+    "tqdm>=4.67.1",
+    "xlsx2csv>=0.8.4",
+    "duckdb>=1.4.3",
+    "fastexcel>=0.18.0",
+]
+
+[tool.uv.sources]
+stimkit = { workspace = true }

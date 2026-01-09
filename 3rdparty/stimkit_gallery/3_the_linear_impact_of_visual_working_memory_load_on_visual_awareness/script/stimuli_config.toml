@@ -1,0 +1,69 @@
+# ==============================================================================
+# Canvas Configuration
+# ==============================================================================
+[canvas]
+bg_color = "black"              # Implied by white fixation and yellow target
+screen_distance = 57.0          # Viewing distance from screen in cm
+screen_size = 17.0              # Screen diagonal size in inches (17" monitor)
+screen_resolution = [1024, 768] # Screen resolution (width, height) in pixels
+
+# ==============================================================================
+# Render Configuration
+# ==============================================================================
+[render]
+max_trials = 5             # Max trials to render per participant file (for debug/sample)
+max_files_per_exp = 1      # Max data files to render per experiment (0 = unlimited)
+phases = ["Memory", "MIB", "Probe"]  # Experimental phases to render
+seed = 42
+output_format = "svg"      # Output image format
+
+[data]
+exp1_path = "data/exp1"
+exp2_path = "data/exp2/MIBpart"
+exp3_path = "data/exp3"
+
+# ==============================================================================
+# Display Settings
+# ==============================================================================
+[display]
+fixation_size = 0.38       # Diameter of central fixation circle (deg)
+fixation_color = "white"
+fixation_stroke = 1.0      # Stroke width in pixels
+fixation_cross_width = 0.05 # Fixation cross stroke width (deg)
+
+# ==============================================================================
+# Memory Task Configuration
+# ==============================================================================
+[memory]
+item_size = 1.83           # Size of memory shapes (bounding box side, deg)
+diamond_eccentricity = 4.18 # Distance from center to shape locations (deg)
+shape_color = "white"      # Not specified, assuming white/gray or standard. 
+                           # Paper says "complex, meaningless shapes" but not color.
+                           # Given black bg, white/gray is likely. Fig 1a shows black lines on white.
+                           # But bg is likely black for MIB. 
+                           # Wait, Exp 1 methods: "background of the display was white" in Exp 1 of Reference paper?
+                           # No, checking current paper text:
+                           # "MIB display consisted of... bright yellow target... blue crosses"
+                           # Usually MIB is on black. 
+                           # MIB paper 2.1: "central white fixation... uniform array of 7x7 blue crosses"
+                           # If background was white, yellow target would be hard to see?
+                           # MIB is typically on black.
+                           # Let's assume black background and white shapes for Memory.
+                           # Fig 1a in paper (which I can't see but text describes) "complex, meaningless shapes".
+                           # I will assume white shapes on black.
+
+# ==============================================================================
+# MIB Task Configuration
+# ==============================================================================
+[mib]
+mask_size = 17.62          # Size of the grid of crosses (deg)
+grid_rows = 7
+grid_cols = 7
+cross_color = [50, 50, 255] # RGB blue
+cross_size = 0.8           # Estimated from Fig 2b (smaller than cell size)
+cross_width = 0.15         # Estimated from Fig 2b (thin strokes)
+rotation_speed = 240       # deg/s
+target_size = 0.50         # Diameter of target disc (deg)
+target_color = "yellow"
+target_eccentricity = 2.91 # Distance from fixation (deg)
+target_quadrant = "UL"     # Upper-Left

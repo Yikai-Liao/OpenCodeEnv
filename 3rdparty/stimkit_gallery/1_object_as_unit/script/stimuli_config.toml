@@ -1,0 +1,108 @@
+# ==============================================================================
+# Canvas Configuration
+# This section mirrors CanvasConfig from stimkit and contains ALL canvas
+# parameters. Width and height are computed from screen_size and screen_resolution.
+# ==============================================================================
+[canvas]
+bg_color = "white"              # Background color (matches paper: RGB 255,255,255)
+screen_distance = 50.0          # Viewing distance from screen in cm
+screen_size = 17.0              # Screen diagonal size in inches (17" monitor)
+screen_resolution = [1024, 768] # Screen resolution (width, height) in pixels
+
+# ==============================================================================
+# Render Configuration
+# ==============================================================================
+[render]
+max_trials = 2             # Max trials to render per participant file
+phases = ["Memory", "Cue", "Search", "Probe1", "Probe2"]  # Experimental phases to render
+seed = 42
+output_format = "svg"      # Output image format (svg, png, pdf, jpg, etc.)
+
+[data]
+groups = ["Integrated_group", "Separate_group"]  # Folder names for each condition
+integrated_group = "Integrated_group"            # Name of integrated condition folder
+separate_group = "Separate_group"                # Name of separate condition folder
+
+# ==============================================================================
+# Display Settings (shared across experiments)
+# ==============================================================================
+[display]
+# Color palette for memory items (1-indexed in trial data)
+# Paper RGB: red(255,0,0), green(0,255,0), purple(255,0,255), yellow(255,255,0), blue(0,0,255)
+colors = ["red", "green", "magenta", "yellow", "blue"]
+color_count = 5            # Number of colors in palette (for probe cycling)
+shape_count = 5            # Number of shapes available (for probe cycling)
+cue_font_size = 40         # Font size for cue text display
+
+[display.cue_text]
+exp1_color = "颜色"        # Exp1 cue for "color" (probed first)
+exp1_shape = "形状"        # Exp1 cue for "shape" (probed first)
+exp2_up = "上"             # Exp2/3 cue for "upper semicircle" (probed first)
+exp2_down = "下"           # Exp2/3 cue for "lower semicircle" (probed first)
+
+# ==============================================================================
+# Search Task Configuration
+# Positions (target_index, singleton_index) are randomized per trial in code
+# ==============================================================================
+[search]
+item_size = 2.94           # Diameter of search items in visual degrees
+radius = 7.59              # Radius of circular search array in visual degrees
+tilt_pos = 45              # Target line tilt angle when target_orient=2 (right)
+tilt_neg = -45             # Target line tilt angle when target_orient=1 (left)
+marker_ratio = 0.3         # Marker size relative to item_size
+line_width = 2.0           # Marker line width in pixels
+base_color = "0.75"        # Gray color for non-singleton distractors (RGB 192,192,192)
+
+# ==============================================================================
+# Experiment 1: Color-Shape Binding
+# Memory: colored shape (integrated) or black shape + colored circle (separate)
+# ==============================================================================
+[experiments.exp1]
+# Trial data columns from .mat file:
+#   col1: memory color index (1-5)
+#   col2: memory shape index (1-5: square/triangle/diamond/hexagon/trapezoid)
+#   dist_cond: distractor condition (1=match col1, 2=match col2, 3=unrelated color, 4=no singleton)
+#   target_orient: target line orientation (1=left tilt, 2=right tilt)
+#   cue_val: retro-cue (1=color first, 2=shape first)
+#   probe_cond: probe match (1=only first same, 2=only second same, 3=both diff, 4=both same)
+trial_columns = ["col1", "col2", "dist_cond", "target_orient", "cue_val", "probe_cond"]
+integrated_item_size = 4.2       # Size of integrated colored shape (visual degrees)
+separate_item_size = 4.2         # Size of separate items (visual degrees)
+separate_offset = 4.2            # Offset from center for separate items (visual degrees)
+separate_shape_color = "black"   # Color of the black shape in separate condition
+
+# ==============================================================================
+# Experiment 2: Same-Dimension Color Binding (Semicircles)
+# Memory: bicolor circle (integrated) or two separated semicircles (separate)
+# ==============================================================================
+[experiments.exp2]
+# Trial data columns (same structure as Exp1, but col1/col2 are both colors):
+#   col1: upper semicircle color (1-5)
+#   col2: lower semicircle color (1-5)
+#   dist_cond: 1=match first probe color, 2=match second probe color, 3=unrelated, 4=no singleton
+trial_columns = ["col1", "col2", "dist_cond", "target_orient", "cue_val", "probe_cond"]
+integrated_item_size = 4.2       # Diameter of integrated bicolor circle
+integrated_x = 0.0               # X position for integrated condition
+integrated_y = 0.0               # Y position for integrated condition
+separate_item_size = 4.2         # Diameter of separate semicircles
+separate_left_x = -2.1           # X position of left semicircle
+separate_left_y = 2.1            # Y position of left semicircle (upper left)
+separate_right_x = 2.1           # X position of right semicircle
+separate_right_y = -2.1          # Y position of right semicircle (lower right)
+separate_left_orientation = "bottom"   # Curved side orientation for left semicircle
+separate_right_orientation = "top"     # Curved side orientation for right semicircle
+
+# ==============================================================================
+# Experiment 3: Gestalt Grouping (Notched Circles)
+# Memory: two notched circles forming gestalt closure (integrated) or rotated (separate)
+# ==============================================================================
+[experiments.exp3]
+# Trial data columns (same as Exp2)
+trial_columns = ["col1", "col2", "dist_cond", "target_orient", "cue_val", "probe_cond"]
+radius = 2.1                     # Radius of each notched circle
+notch_side = 2.1                 # Side length of the square notch
+vertical_offset = 2.1            # Vertical distance from center for each circle
+probe_item_size = 4.2            # Size of color probe circle
+integrated_top_angle = 270       # Notch angle for top circle (facing down for closure)
+integrated_bottom_angle = 90     # Notch angle for bottom circle (facing up for closure)
+# Separate condition: one component is randomly rotated by ±90° from the integrated angles (handled in code)
