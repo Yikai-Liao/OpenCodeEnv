@@ -1,4 +1,6 @@
 接下来，你需要利用skill，多Agent能力，来尝试复现给定论文的原始刺激，每个阶段使用一个Agent独立运行。具体要求如下：
+数据/代码在 <workspace> 的data路径下，论文在<workspace>/paper 路径下，已经成功转换成md了。你必须使用带阻塞的task工具创建sub-agent来执行下面的任务。
+
 
 ## 1. 可复现性检查
 
@@ -22,10 +24,10 @@
 
 创建一个独立Agent阻塞运行，加载 stimuli-code-generation 技能，并在需要时加载reference下的md文件。
 
-开始编写刺激复现脚本。我已经创建了uv环境并已经添加了uv add stimkit依赖，这个库存在于pypi, <workspace>/3rdparty 下为只读文件，是方便你参考阅读的stimkit源代码
+开始编写刺激复现脚本。我已经创建了uv环境并已经添加了uv add stimkit依赖，这个库存在于pypi, `/stimkit` 下为只读文件，是方便你参考阅读的stimkit源代码
 
-一些示例工程被放在了 绝对路径 `/gallery`下 你可以优先参考gallery中编号1的工程，但是那个工程仍有缺点，以SKILL中的要求和说明为更高优先级的根本要求 
-**禁止将pyproject.toml中的stimkit指向3rdparty路径**
+一些示例工程被放在了 绝对路径 `/stimkit_gallery`下 你可以优先参考gallery中编号1的工程，但是那个工程仍有缺点，以SKILL中的要求和说明为更高优先级的根本要求 
+**禁止将pyproject.toml中的stimkit指向/stimkit**
 
 当你需要读取任何data路径下的preview文件时，请限制读取的行数不超过30行。如果需要进一步分析，请在script下写python脚本，在uv环境中添加需要的依赖然后运行。
 

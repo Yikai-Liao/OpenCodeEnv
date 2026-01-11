@@ -98,21 +98,31 @@ RUN useradd -m -s /bin/zsh developer \
 # Switch to user
 USER developer
 WORKDIR /workspace
-COPY zshrc /home/developer/.zshrc
+COPY --chown=developer:developer zshrc /home/developer/.zshrc
 
 RUN curl -fsSL https://bun.sh/install | bash 
 RUN /home/developer/.bun/bin/bun install -g opencode-ai
 RUN mkdir -p /home/developer/.local/share/opencode && mkdir -p /home/developer/.config/opencode
 
 # Add Tool
-COPY 3rdparty/mat_preview /home/developer/tmp/mat_preview
-RUN uv tool install /home/developer/tmp/mat_preview \
-    && rm -rf /home/developer/tmp/mat_preview \
-    && uv tool install "markitdown[all]"
+# Configure uv to place tool executables in the user's local bin (avoid /usr/local/bin)
+# and ensure the target dirs exist and are owned by the developer user.
+ENV UV_TOOL_BIN_DIR=/home/developer/.local/bin
+ENV UV_TOOL_DIR=/home/developer/.local/share/uv/tools
+ENV UV_CACHE_DIR=/home/developer/.cache/uv
+ENV XDG_BIN_HOME=/home/developer/.local/bin
+ENV XDG_DATA_HOME=/home/developer/.local/share
+ENV UV_DEFAULT_INDEX=https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+
+COPY --chown=developer:developer 3rdparty/mat_preview /home/developer/tmp/mat_preview
+RUN mkdir -p /home/developer/.local/bin /home/developer/.local/share && \
+    uv tool install /home/developer/tmp/mat_preview && \
+    rm -rf /home/developer/tmp/mat_preview && \
+    uv tool install "markitdown[all]"
 
 # Add Gallery
-COPY 3rdparty/stimkit_gallery /stimkit_gallery
-RUN chown -R developer:developer /stimkit_gallery
+COPY --chown=developer:developer 3rdparty/stimkit_gallery /stimkit_gallery
+COPY --chown=developer:developer 3rdparty/stimkit /stimkit
 
 # Default command
 CMD ["/bin/zsh"]

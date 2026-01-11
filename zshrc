@@ -16,5 +16,6 @@ plugins=(
   zsh-syntax-highlighting
 )
 
+export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
 source $ZSH/oh-my-zsh.sh

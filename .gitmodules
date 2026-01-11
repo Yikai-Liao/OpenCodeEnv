@@ -1,0 +1,3 @@
+[submodule "3rdparty/stimkit"]
+	path = 3rdparty/stimkit
+	url = git@github.com:Yikai-Liao/stimkit.git
