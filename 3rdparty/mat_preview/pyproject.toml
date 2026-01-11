@@ -1,0 +1,18 @@
+[project]
+name = "mat-preview"
+version = "0.2.0"
+description = "Preview .mat files from command line"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "h5py>=3.15.1",
+    "numpy>=2.4.0",
+    "scipy>=1.16.3",
+]
+
+[project.scripts]
+mat_preview = "main:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

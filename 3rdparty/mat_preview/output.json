@@ -1,0 +1,51 @@
+[
+  {
+    "name": "A",
+    "kind": "dataset",
+    "dtype": "int16",
+    "shape": [
+      4,
+      5
+    ],
+    "sample": "[0, 1, 2, 3, 4]",
+    "note": null
+  },
+  {
+    "name": "B",
+    "kind": "dataset",
+    "dtype": "float64",
+    "shape": [
+      3,
+      3
+    ],
+    "sample": "[0.92586506, 0.02098439, 0.23602243, 0.44483989, 0.33281486]",
+    "note": null
+  },
+  {
+    "name": "msg",
+    "kind": "dataset",
+    "dtype": "|S16",
+    "shape": [],
+    "sample": "[b'hello mat (hdf5)']",
+    "note": null
+  },
+  {
+    "name": "nested",
+    "kind": "group",
+    "dtype": "",
+    "shape": [],
+    "sample": null,
+    "note": "1 members"
+  },
+  {
+    "name": "nested/C",
+    "kind": "dataset",
+    "dtype": "float64",
+    "shape": [
+      3,
+      3
+    ],
+    "sample": "[0.   , 0.125, 0.25 , 0.375, 0.5  ]",
+    "note": null
+  }
+]
