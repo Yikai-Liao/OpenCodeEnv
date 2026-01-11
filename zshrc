@@ -10,11 +10,12 @@ export LANGUAGE=${LANGUAGE:-en_US:en}
 export ZSH="/etc/ohmyzsh"
 ZSH_THEME="ys-me"
 plugins=(
-  z
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
 )
+
+alias clauded="claude --dangerously-skip-permissions"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.bun/bin:$PATH"
